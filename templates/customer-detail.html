@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Detail</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1, h2 { color: #28a745; }
+    .customer-info, .loan-table, .transaction-section { margin-bottom: 30px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 10px; }
+    th { background-color: #28a745; color: white; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    form input, form textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
+    button { padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    a { display: inline-block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Customer Detail</h1>
+
+  <div class="customer-info">
+    <p><strong>Name:</strong> {{ customer['name'] }}</p>
+    <p><strong>Email:</strong> {{ customer['email'] }}</p>
+    <p><strong>Mobile:</strong> {{ customer['mobile'] }}</p>
+    <p><strong>Address:</strong> {{ customer['address'] }}</p>
+  </div>
+
+  <h2>Loan Accounts</h2>
+  <div class="loan-table">
+    {% if loans %}
+    <table>
+      <thead>
+        <tr>
+          <th>Loan Amount</th>
+          <th>EMI</th>
+          <th>Interest</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for loan in loans %}
+        <tr>
+          <td>${{ loan['loan_amount'] }}</td>
+          <td>${{ loan['emi'] }}</td>
+          <td>{{ loan['interest_rate'] }}%</td>
+          <td>{{ loan['due_date'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No loans found for this customer.</p>
+    {% endif %}
+  </div>
+
+  <h2>Transactions</h2>
+  <div class="transaction-section">
+    {% if transactions %}
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tx in transactions %}
+        <tr>
+          <td>{{ tx['date'] }}</td>
+          <td>{{ tx['type'] }}</td>
+          <td>${{ tx['amount'] }}</td>
+          <td>{{ tx['description'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No transactions found.</p>
+    {% endif %}
+  </div>
+
+  <h2>Add New Transaction</h2>
+  <form method="POST" action="/customer/{{ customer['id'] }}/add-transaction">
+    <input type="date" name="date" required>
+    <input type="text" name="type" placeholder="Transaction Type (e.g. Credit/Debit)" required>
+    <input type="number" step="0.01" name="amount" placeholder="Amount" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Add Transaction</button>
+  </form>
+
+  <a href="/dashboard">← Back to Dashboard</a>
+</body>
+</html>

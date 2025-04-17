@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header {
+      background-color: #28a745;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      max-width: 400px;
+    }
+    h2 { color: #28a745; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>User Profile</h1>
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>{{ user['name'] }}</h2>
+      <p><strong>Email:</strong> {{ user['email'] }}</p>
+      <p><strong>Mobile Number:</strong> {{ user['number'] }}</p>
+    </div>
+  </div>
+</body>
+</html>

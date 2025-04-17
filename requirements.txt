@@ -1,0 +1,106 @@
+1.files creation:
+loan-accounts-website/
+│
+├── static/                # For CSS, JS (optional for now)
+├── templates/             # All HTML files go here
+│   ├── add-loan.html
+│   ├── manage-loans.html
+│   ├── register.html (optional)
+│   └── login.html (optional)
+│
+├── app.py                 # Main Flask application
+├── database.py            # Script to create SQLite database and table
+├── loans.db               # SQLite DB file (auto created)
+└── requirements.txt       # List of dependencies (optional)
+
+<style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      margin: 0;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #28a745;
+      padding: 20px;
+      color: white;
+      height: 100%;
+    }
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      display: block;
+      margin: 8px 0;
+      border-radius: 8px;
+    }
+    .sidebar a:hover {
+      background-color: #218838;
+    }
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+    h1 {
+      color: #28a745;
+    }
+    .loan-list {
+      width: 100%;
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    table th {
+      background-color: #28a745;
+      color: white;
+    }
+    table td {
+      background-color: #f9f9f9;
+    }
+    .action-btns {
+      display: flex;
+      gap: 10px;
+    }
+    .action-btns button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .action-btns button:hover {
+      background-color: #218838;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table {
+        font-size: 14px;
+      }
+      table th, table td {
+        padding: 8px;
+      }
+      .action-btns button {
+        padding: 6px 10px;
+      }
+    }
+
+  </style>

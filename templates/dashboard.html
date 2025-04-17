@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Loan Manager</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header {
+      background-color: #28a745;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container { padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #28a745; color: white; }
+    tr:hover { background-color: #f1f1f1; cursor: pointer; }
+    a.button {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Loans Account Manager Site </h1>
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/profile">User Profile</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <a href="/add-customer" class="button">Add New Customer</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+        <tr>
+          <td><a href="/customer/{{ customer['id'] }}/transactions">{{ customer['name'] }}</a></td>
+          <td>{{ customer['email'] }}</td>
+          <td>{{ customer['mobile'] }}</td>
+          <td><a href="/customer/{{ customer['id'] }}/transactions">View Transactions</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>    
+  </div>
+</body>
+</html>
